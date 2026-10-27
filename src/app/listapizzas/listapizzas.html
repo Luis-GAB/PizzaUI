@@ -6,7 +6,7 @@
                 <app-pizza-card [nombre]="pizza.name" [srcImagen]="pizza.imagen" [listaIngredientes]="pizza.ingredientes" [precio]="pizza.precio"/>
             </div>
         } @empty {
-            <p>No se han encontrado pizzas.</p>
+            <p>No se han encontrado pizzas con el ingrediente <em>{{ingredienteBuscar()}}</em>.</p>
         }
     </div>
 </div>

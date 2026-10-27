@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { Profile } from './navbar/navbar';
+import { Navbar } from './navbar/navbar';
 import { Listapizzas } from './listapizzas/listapizzas';
 import { Formulario } from './formulario/formulario';
 
 @Component({
-  imports: [Profile, Listapizzas, Formulario],
+  imports: [Navbar, Listapizzas, Formulario],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',

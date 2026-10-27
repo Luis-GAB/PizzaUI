@@ -48,8 +48,8 @@ export class Listapizzas {
     }
 
     return this.pizzas.filter(pizza =>
-      pizza.ingredientes.toLowerCase().includes(texto)
-    );
-  }
+      pizza.ingredientes.some(ingrediente =>
+      ingrediente.toLowerCase().includes(texto)));
+    }
 
 }

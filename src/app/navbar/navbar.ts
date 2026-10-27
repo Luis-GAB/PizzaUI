@@ -4,11 +4,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 @Component({
   imports: [ReactiveFormsModule],
   selector: 'app-navbar',
-  styleUrl: './profile.scss',
-  templateUrl: './profile.html',
+  styleUrl: './navbar.scss',
+  templateUrl: './navbar.html',
 })
 
-export class Profile {
+export class Navbar {
   titulo = signal('Mail Pizza');
   //nombreIngrediente = new FormControl("");
   //ingredienteBuscar = input("");
