@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 
 @Component({
   imports: [ReactiveFormsModule],
-  selector: 'app-profile',
+  selector: 'app-navbar',
   styleUrl: './profile.scss',
   templateUrl: './profile.html',
 })

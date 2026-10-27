@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { Profile } from './profile/profile';
+import { Profile } from './navbar/navbar';
 import { Listapizzas } from './listapizzas/listapizzas';
 import { Formulario } from './formulario/formulario';
 

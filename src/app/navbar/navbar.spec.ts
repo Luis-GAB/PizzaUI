@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Profile } from './profile';
+import { Profile } from './navbar';
 
 describe('Profile', () => {
   let component: Profile;
