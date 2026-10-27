@@ -1,0 +1,9 @@
+<h3 class="text-center">{{nombre()}}</h3>
+<img [src]="srcImagen()" class="img-fluid" alt="nombre()">
+<h6>Ingredientes:</h6>
+<ul>
+    @for (ingrediente of listaIngredientes(); track ingrediente) {
+        <li>{{ ingrediente }}</li>
+    }
+</ul>
+<p>Precio: {{precio()}} €</p>

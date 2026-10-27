@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <div class="row g-4">
+        <h2>Nuestras pizzas</h2>
+        @for (pizza of pizzasFiltradas; track pizza.ingredientes) {
+            <div class="col-12 col-md-6 col-xl-3 pizza-card">
+                <app-pizza-card [nombre]="pizza.name" [srcImagen]="pizza.imagen" [listaIngredientes]="pizza.ingredientes" [precio]="pizza.precio"/>
+            </div>
+        } @empty {
+            <p>No se han encontrado pizzas.</p>
+        }
+    </div>
+</div>
