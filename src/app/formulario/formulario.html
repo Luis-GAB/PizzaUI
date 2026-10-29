@@ -1,24 +1,25 @@
 <div class="container-fluid formulario-pizza">
     <h3>Realizar Pedido</h3>
-    <form>
+    <form [formGroup]="pedidoForm" (ngSubmit)="enviarPedido()">
         <label for="hora">Hora de envio:</label>
-        <input type="time" id="hora"
+        <input type="time" formControlName="hora"
                name="hora" required>
         <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion"
+        <input type="text" formControlName="direccion"
                name="direccion" required>
         <label for="pago">Metodo de pago:</label>
-        <select [value]="tipoSeleccionado" (change)="cambiarTipo($event)" id="metodo" name="metodo">
+        <select [value]="tipoSeleccionado" (change)="cambiarTipo($event)" formControlName="metodo" name="metodo">
             <option value="bizum">Bizum</option>
             <option value="tarjeta">Tarjeta</option>
         </select>
         <div>
           <label for="numeros">{{ textoEtiqueta }}</label>
           <input type="text" [value]="valorInput" (input)="leerInput($event)"
-              id="numeros" name="numeros" required>
+              formControlName="numeros" name="numeros" required>
           <p class="error"> {{ mensajeError }} </p>
         </div>
         <br>
         <button type="submit">Enviar pedido</button>
+        <h2 class="gracias"> {{ mensajeGracias }} </h2>
     </form>
 </div>
