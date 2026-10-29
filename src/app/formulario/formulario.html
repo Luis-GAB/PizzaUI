@@ -12,9 +12,12 @@
             <option value="bizum">Bizum</option>
             <option value="tarjeta">Tarjeta</option>
         </select>
-        <label for="numeros">{{ textoEtiqueta }}</label>
-        <input type="text" id="numeros" 
-               name="numeros" required>
+        <div>
+          <label for="numeros">{{ textoEtiqueta }}</label>
+          <input type="text" [value]="valorInput" (input)="leerInput($event)"
+              id="numeros" name="numeros" required>
+          <p class="error"> {{ mensajeError }} </p>
+        </div>
         <br>
         <button type="submit">Enviar pedido</button>
     </form>
