@@ -1,17 +1,20 @@
 <div class="container-fluid formulario-pizza">
     <h3>Realizar Pedido</h3>
     <form>
-        <label>Hora de envio:</label>
+        <label for="hora">Hora de envio:</label>
         <input type="time" id="hora"
                name="hora" required>
-        <label>Dirección:</label>
+        <label for="direccion">Dirección:</label>
         <input type="text" id="direccion"
                name="direccion" required>
-        <label>Metodo de pago:</label>
-        <select id="metodo" name="metodo">
-            <option value="jamon">Bizum</option>
-            <option value="quesos">Tarjeta</option>
+        <label for="pago">Metodo de pago:</label>
+        <select [value]="tipoSeleccionado" (change)="cambiarTipo($event)" id="metodo" name="metodo">
+            <option value="bizum">Bizum</option>
+            <option value="tarjeta">Tarjeta</option>
         </select>
+        <label for="numeros">{{ textoEtiqueta }}</label>
+        <input type="text" id="numeros" 
+               name="numeros" required>
         <br>
         <button type="submit">Enviar pedido</button>
     </form>
