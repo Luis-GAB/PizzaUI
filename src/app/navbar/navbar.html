@@ -2,8 +2,8 @@
     <ul class="navbar-list">
       <li class="navbar-list-item"><img src="logoPizza.png"/></li>
       <li class="navbar-list-item"><h3>{{titulo()}}</h3></li>
-      <li class="navbar-list-item"><a href="#">Ver pizzas</a></li>
-      <li class="navbar-list-item"><a href="#">Realizar pedido</a></li>
+      <li class="navbar-list-item"><a routerLink="/listapizzas">Ver pizzas</a></li>
+      <li class="navbar-list-item"><a routerLink="/formulario">Realizar pedido</a></li>
       <li class="navbar-list-item">
         <form [formGroup]="contactForm" (ngSubmit)="buscarPizza()">
           <input type="text" formControlName="nombreIngrediente" placeholder="Busca por ingredientes">

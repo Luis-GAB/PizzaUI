@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { PizzaCard } from '../listapizzas/pizza-card/pizza-card';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   imports: [PizzaCard],
@@ -10,11 +11,12 @@ import { PizzaCard } from '../listapizzas/pizza-card/pizza-card';
 
 export class Listapizzas {
   
-  ingredienteBuscar = input<string>("");
+  ingredienteBuscar = signal('');
+  //ingredienteBuscar = input<string>("");
 
   //listaPizzas: PizzaCard[] = [];
   pizzas = [
-    { name: 'Jamon y Queso',
+    { name: 'Jamón y Queso',
       imagen: 'pizzaJamonQueso.jpg',
       ingredientes: ["Jamón cocido", "Queso mozzarela", "Salsa tomate"],
       precio: 7.50 },
@@ -38,6 +40,12 @@ export class Listapizzas {
     //let pizzaBarbacoa = new PizzaCard("Barbacoa", "pizzaBarbacoa.jpg", ["Salsa tomate frito", "Queso mozzarela", "Carne picada", "Bacon en taquitos", "Pollo desmenuzado", "Salsa barbacoa", "Oregano seco"], 8.25);
     //this.listaPizzas = [pizzaJamon, pizza4Quesos, pizzaMargarita, pizzaBarbacoa];
   //}
+
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParamMap.subscribe(params => {
+        this.ingredienteBuscar.set(params.get('ingrediente') ?? '');
+    });
+}
 
   get pizzasFiltradas() {
     const texto = this.ingredienteBuscar().trim().toLowerCase();
