@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input, signal, output } from '@angular/core';
 import { PizzaCard } from '../listapizzas/pizza-card/pizza-card';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 
 export class Listapizzas {
   
-  ingredienteBuscar = signal('');
-  //ingredienteBuscar = input<string>("");
+  ingredienteBuscar = input<string>('');
+  pizzaSeleccionada = output<{nombre: string, cantidad: number}>();
 
   //listaPizzas: PizzaCard[] = [];
   pizzas = [
@@ -41,11 +41,15 @@ export class Listapizzas {
     //this.listaPizzas = [pizzaJamon, pizza4Quesos, pizzaMargarita, pizzaBarbacoa];
   //}
 
-  constructor(private route: ActivatedRoute) {
-    this.route.queryParamMap.subscribe(params => {
-        this.ingredienteBuscar.set(params.get('ingrediente') ?? '');
-    });
-}
+  //constructor(private route: ActivatedRoute) {
+    //this.route.queryParamMap.subscribe(params => {
+        //this.ingredienteBuscar.set(params.get('ingrediente') ?? '');
+    //});
+  //}
+
+  recibirPizza(pizza: {nombre: string, cantidad: number}) {
+    this.pizzaSeleccionada.emit(pizza);
+  }
 
   get pizzasFiltradas() {
     const texto = this.ingredienteBuscar().trim().toLowerCase();

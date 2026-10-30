@@ -1,5 +1,11 @@
 <div class="container-fluid formulario-pizza">
     <h3>Realizar Pedido</h3>
+    <h4>Tu pedido</h4>
+    @for (pizza of pizzasPedido(); track $index) {
+        <p>
+            {{ pizza.nombre }} - Cantidad: {{ pizza.cantidad }}
+        </p>
+    }
     <form [formGroup]="pedidoForm" (ngSubmit)="tratarPedido(true)">
         <label for="hora">Hora de envio:</label>
         <input type="time" formControlName="hora"

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,7 @@ export class Formulario {
   valorInput = '';
   mensajeError = '';
   mensajeGracias = '';
+  pizzasPedido = input<{nombre: string, cantidad: number}[]>([]);
 
   pedidoForm = new FormGroup({
     hora: new FormControl('', Validators.required),

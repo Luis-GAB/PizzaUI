@@ -14,7 +14,7 @@ export class Navbar {
   //nombreIngrediente = new FormControl("");
   //ingredienteBuscar = input("");
   eventClick = output<string>();
-  //paginaSeleccionada = output<string>();
+  paginaSeleccionada = output<string>();
 
   contactForm = new FormGroup({
     nombreIngrediente: new FormControl('', { validators: [Validators.required], nonNullable: true}),
@@ -25,8 +25,8 @@ export class Navbar {
     this.eventClick.emit(nombre);
   }
 
-  //irPagina(pagina: string) {
-  //  this.paginaSeleccionada.emit(pagina);
-  //}
+  cambiarPagina(pagina: string) {
+    this.paginaSeleccionada.emit(pagina);
+  }
 
 }

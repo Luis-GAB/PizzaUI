@@ -7,3 +7,7 @@
     }
 </ul>
 <p>Precio: {{precio()}} €</p>
+<label for="cantidad">Cantidad:</label>
+<input type="text" name="cantidad"
+    (input)="valorInput = $any($event.target).value">
+<button type="button" (click)="anadirPedido()">Añadir al pedido</button>
