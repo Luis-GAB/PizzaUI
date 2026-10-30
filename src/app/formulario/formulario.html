@@ -1,6 +1,6 @@
 <div class="container-fluid formulario-pizza">
     <h3>Realizar Pedido</h3>
-    <form [formGroup]="pedidoForm" (ngSubmit)="enviarPedido()">
+    <form [formGroup]="pedidoForm" (ngSubmit)="tratarPedido(true)">
         <label for="hora">Hora de envio:</label>
         <input type="time" formControlName="hora"
                name="hora" required>
@@ -19,7 +19,10 @@
           <p class="error"> {{ mensajeError }} </p>
         </div>
         <br>
-        <button type="submit">Enviar pedido</button>
+        <div class="botonmargen">
+          <button type="submit">Enviar pedido</button>
+          <button type="button" (click)="tratarPedido(false)">Limpiar pedido</button>
+        </div>
         <h2 class="gracias"> {{ mensajeGracias }} </h2>
     </form>
 </div>

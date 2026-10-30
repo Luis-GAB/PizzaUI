@@ -74,9 +74,18 @@ export class Formulario {
   }
 
   enviarPedido() {
+     this.tratarPedido(true);
+  }
+
+  limpiarPedido() {
+     this.tratarPedido(false);
+  }
+
+  tratarPedido(enviar: boolean) {
+
     this.validarInput();
 
-    if (this.pedidoForm.invalid) {
+    if (this.pedidoForm.invalid && (enviar)) {
       this.pedidoForm.markAllAsTouched();
       this.mensajeGracias = '';
       return;
@@ -89,9 +98,13 @@ export class Formulario {
       numeros: ''
     });
 
-    this.tipoSeleccionado = 'bizum';
-    this.textoEtiqueta = 'Número móvil:';
-    this.mensajeGracias = '¡Gracias por tu pedido!';
+    if (enviar) {
+      this.tipoSeleccionado = 'bizum';
+      this.textoEtiqueta = 'Número móvil:';
+      this.mensajeGracias = '¡Gracias por tu pedido!';
+    } else if (!enviar) {
+      this.mensajeGracias = '¡Pedido eliminado!';
+    }
 
   }
   

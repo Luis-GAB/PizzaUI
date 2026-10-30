@@ -46,3 +46,18 @@ h3 {
 .gracias {
     color: #00ff4c;
 }
+
+.botonmargen {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    button {
+        width: auto;
+        margin: 0;
+    }
+}
