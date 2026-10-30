@@ -13,6 +13,7 @@ export class PizzaCard {
   //imagen: string;
   //ingredientes: string[];
   valorInput = '';
+  mensajeError = '';
   nombre = input<string>("Pizza");
   srcImagen = input<string>("assets/default.jpg");
   listaIngredientes = input<string[]>([]);
@@ -22,14 +23,17 @@ export class PizzaCard {
 
   anadirPedido() {
     const valor = this.valorInput.trim();
+    this.mensajeError = '';
 
     if (valor === '' || !/^\d+$/.test(valor)) {
+      this.mensajeError = 'Debes introducir números validos';
       return;
     }
 
     const cantidad = Number(valor);
 
     if (cantidad <= 0) {
+      this.mensajeError = 'Debe ser mayor a 0';
       return;
     }
 
@@ -37,6 +41,8 @@ export class PizzaCard {
       nombre: this.nombre(),
       cantidad: cantidad
     });
+
+    this.valorInput = '';
 
   }
    

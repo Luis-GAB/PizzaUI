@@ -31,7 +31,7 @@
     }
 }
 
-h3 {
+h2 {
     border: 3px solid #00ff4c;
     padding: 15px;
     border-radius: 10px;
@@ -60,4 +60,11 @@ h3 {
         width: auto;
         margin: 0;
     }
+}
+
+.pedido {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 15px 15px 15px 35px;
+    background-color: #ebebeb;
 }

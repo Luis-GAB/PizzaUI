@@ -1,18 +1,23 @@
 <div class="container-fluid formulario-pizza">
-    <h3>Realizar Pedido</h3>
+    <h2>Realizar Pedido</h2>
     <h4>Tu pedido</h4>
-    @for (pizza of pizzasPedido(); track $index) {
-        <p>
-            {{ pizza.nombre }} - Cantidad: {{ pizza.cantidad }}
-        </p>
-    }
+    <div class="pedido">
+        @for (pizza of pizzasPedido(); track $index) {
+            <p>
+                {{ pizza.nombre }} - Cantidad: {{ pizza.cantidad }}
+            </p>
+        }
+        <p class="error"> {{ mensajeErrorPedido }} </p>
+    </div>
     <form [formGroup]="pedidoForm" (ngSubmit)="tratarPedido(true)">
         <label for="hora">Hora de envio:</label>
         <input type="time" formControlName="hora"
                name="hora" required>
+        <p class="error"> {{ mensajeErrorHora }} </p>
         <label for="direccion">Dirección:</label>
         <input type="text" formControlName="direccion"
                name="direccion" required>
+        <p class="error"> {{ mensajeErrorDir }} </p>
         <label for="pago">Metodo de pago:</label>
         <select [value]="tipoSeleccionado" (change)="cambiarTipo($event)" formControlName="metodo" name="metodo">
             <option value="bizum">Bizum</option>
@@ -22,7 +27,7 @@
           <label for="numeros">{{ textoEtiqueta }}</label>
           <input type="text" [value]="valorInput" (input)="leerInput($event)"
               formControlName="numeros" name="numeros" required>
-          <p class="error"> {{ mensajeError }} </p>
+          <p class="error"> {{ mensajeErrorNum }} </p>
         </div>
         <br>
         <div class="botonmargen">

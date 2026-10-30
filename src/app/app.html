@@ -9,7 +9,8 @@
 
 @if (paginaActual === 'formulario') {
     <app-formulario
-        [pizzasPedido]="pizzasPedido">
+        [pizzasPedido]="pizzasPedido"
+        (eliminarPedido)="vaciarPedido()">
     </app-formulario>
 }
 

@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
 import { Navbar } from './navbar/navbar';
 import { Listapizzas } from './listapizzas/listapizzas';
 import { Formulario } from './formulario/formulario';
 
 @Component({
-  imports: [Navbar, Listapizzas, Formulario, RouterOutlet],
+  imports: [Navbar, Listapizzas, Formulario],
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
@@ -33,6 +32,10 @@ export class App {
 
   recibirPizza(pizza: {nombre: string, cantidad: number}) {
     this.pizzasPedido = [...this.pizzasPedido, pizza];
+  }
+
+  vaciarPedido() {
+    this.pizzasPedido = [];
   }
 
 }

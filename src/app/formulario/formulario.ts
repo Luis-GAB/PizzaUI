@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -13,9 +13,13 @@ export class Formulario {
   tipoSeleccionado = 'bizum';
   textoEtiqueta = 'Número movil:';
   valorInput = '';
-  mensajeError = '';
+  mensajeErrorNum = '';
+  mensajeErrorDir = '';
+  mensajeErrorPedido = '';
+  mensajeErrorHora = '';
   mensajeGracias = '';
   pizzasPedido = input<{nombre: string, cantidad: number}[]>([]);
+  eliminarPedido = output<void>();
 
   pedidoForm = new FormGroup({
     hora: new FormControl('', Validators.required),
@@ -54,41 +58,71 @@ export class Formulario {
     const valor = this.valorInput.trim();
 
     if (valor === '') {
-      this.mensajeError = '';
+      this.mensajeErrorNum = 'No has introducido nada';
       return;
     }
 
     if (this.tipoSeleccionado === 'bizum' && !/^\d+$/.test(valor)) {
-      this.mensajeError = 'Debes introducir solo números';
+      this.mensajeErrorNum = 'Debes introducir solo números';
       return;
     } else if (this.tipoSeleccionado === 'bizum' && valor.length !== 9) {
-      this.mensajeError = 'El número de tarjeta debe tener 9 dígitos';
+      this.mensajeErrorNum = 'El número de tarjeta debe tener 9 dígitos';
       return;
     }
 
     if (this.tipoSeleccionado === 'tarjeta' && valor.length !== 16) {
-      this.mensajeError = 'El número de tarjeta debe tener 16 dígitos';
+      this.mensajeErrorNum = 'El número de tarjeta debe tener 16 dígitos';
       return;
     }
 
-    this.mensajeError = '';
-  }
-
-  enviarPedido() {
-     this.tratarPedido(true);
-  }
-
-  limpiarPedido() {
-     this.tratarPedido(false);
+    this.mensajeErrorNum = '';
   }
 
   tratarPedido(enviar: boolean) {
 
     this.validarInput();
+    var noValid = false;
+
+    if (enviar) {
+      // Comprobar si la hora está vacía
+      const hora = this.pedidoForm.controls.hora.value;
+      if (hora === '') { 
+        this.mensajeErrorHora = 'Debes seleccionar una hora para el pedido.';
+        noValid = true;
+      } else {
+        this.mensajeErrorHora = '';
+      }
+ 
+      // Comprobar si el pedido está vacío
+      if (this.pizzasPedido().length === 0) {
+        this.mensajeErrorPedido = 'No puedes enviar un pedido vacío.';
+        noValid = true;
+      } else {
+        this.mensajeErrorPedido = '';
+      }
+
+      // Comprobar si la dirección está vacía
+      const direccion = this.pedidoForm.controls.direccion.value;
+      if (direccion === '') {
+        this.mensajeErrorDir = 'Debes introducir una dirección.';
+        noValid = true;
+      } else {
+        this.mensajeErrorDir = '';
+      }
+
+    }
+
+    if (noValid){
+      return;
+    }
 
     if (this.pedidoForm.invalid && (enviar)) {
       this.pedidoForm.markAllAsTouched();
       this.mensajeGracias = '';
+      this.mensajeErrorNum = '';
+      this.mensajeErrorDir = '';
+      this.mensajeErrorPedido = '';
+      this.mensajeErrorHora = '';
       return;
     }
 
@@ -99,12 +133,19 @@ export class Formulario {
       numeros: ''
     });
 
+    // Avisamos a App para borrar las pizzas
+    this.eliminarPedido.emit();
+
     if (enviar) {
       this.tipoSeleccionado = 'bizum';
       this.textoEtiqueta = 'Número móvil:';
       this.mensajeGracias = '¡Gracias por tu pedido!';
     } else if (!enviar) {
       this.mensajeGracias = '¡Pedido eliminado!';
+      this.mensajeErrorNum = '';
+      this.mensajeErrorDir = '';
+      this.mensajeErrorPedido = '';
+      this.mensajeErrorHora = '';
     }
 
   }
